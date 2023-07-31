@@ -4,7 +4,9 @@ export default function Сalendar({ date }) {
   const weekday = date.toLocaleDateString('ru-RU', { weekday: 'long' });
   const year = date.getFullYear();
   const month = date.toLocaleDateString('ru-RU', { month: 'long' });
-  const day = date.toLocaleDateString('ru-RU', { day: 'numeric' });
+  const day = date.getDate();
+  const daysOfWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+  const daysOfWeekFull = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
 
   function capitalizeFirstLetter(str) {
     if (!str) {
@@ -97,21 +99,7 @@ export default function Сalendar({ date }) {
     resultArray[chunkIndex].push(item);
   
     return resultArray;
-  }, [])
-
-  const TableRow = ({data}) => {
-    return data.map((item , index, arr) =>                                                                   
-      <tr key={index}>
-        <td className={(arr[index][0] > 7 && index === 0) || (arr[index][0] < 7 && index === arr.length - 1) ? 'ui-datepicker-other-month' : ''}>{arr[index][0]}</td>
-        <td className={(arr[index][1] > 7 && index === 0) || (arr[index][1] < 7 && index === arr.length - 1) ? 'ui-datepicker-other-month' : ''}>{arr[index][1]}</td>
-        <td className={(arr[index][2] > 7 && index === 0) || (arr[index][2] < 7 && index === arr.length - 1) ? 'ui-datepicker-other-month' : ''}>{arr[index][2]}</td>
-        <td className={(arr[index][3] > 7 && index === 0) || (arr[index][3] < 7 && index === arr.length - 1) ? 'ui-datepicker-other-month' : ''}>{arr[index][3]}</td>
-        <td className={(arr[index][4] > 7 && index === 0) || (arr[index][4] < 7 && index === arr.length - 1) ? 'ui-datepicker-other-month' : ''}>{arr[index][4]}</td>
-        <td className={(arr[index][5] > 7 && index === 0) || (arr[index][5] < 7 && index === arr.length - 1) ? 'ui-datepicker-other-month' : ''}>{arr[index][5]}</td>
-        <td className={(arr[index][6] > 7 && index === 0) || (arr[index][6] < 7 && index === arr.length - 1) ? 'ui-datepicker-other-month' : ''}>{arr[index][6]}</td>
-      </tr>
-    );
-  }
+  }, []);
 
   return (
     <div className="ui-datepicker">
@@ -143,19 +131,53 @@ export default function Сalendar({ date }) {
 
         <thead>
           <tr>
-            <th scope="col" title="Понедельник">Пн</th>
-            <th scope="col" title="Вторник">Вт</th>
-            <th scope="col" title="Среда">Ср</th>
-            <th scope="col" title="Четверг">Чт</th>
-            <th scope="col" title="Пятница">Пт</th>
-            <th scope="col" title="Суббота">Сб</th>
-            <th scope="col" title="Воскресенье">Вс</th>
+            {
+              daysOfWeek.map((item , index, arr) => {
+                return (
+                  <th key={index} scope="col" title={daysOfWeekFull[index]}>{item}</th>
+                );
+              })
+            }
           </tr>
         </thead>
 
         {
           <tbody>
-            <TableRow data={allDaysResult}/>
+            <tr>
+              {
+                allDaysResult[0].map((item , index, arr) => {
+                  return (
+                    <td key={index} className={item > 7 ? 'ui-datepicker-other-month' : day === item ? 'ui-datepicker-today': ''}>{item}</td>
+                  );
+                })  
+              }                                                     
+            </tr>
+            
+            {
+              allDaysResult.slice(1, -1).map((item , index, arr) => {
+                return (
+                  <tr key={index}>
+                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][0]}</td>
+                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][1]}</td>
+                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][2]}</td>
+                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][3]}</td>
+                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][4]}</td>
+                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][5]}</td>
+                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][6]}</td>
+                  </tr>  
+                );
+              })
+            }
+
+            <tr>
+              {
+                allDaysResult.at(-1).map((item , index, arr) => {
+                  return (
+                    <td key={index} className={item < 7 ? 'ui-datepicker-other-month' : day === item ? 'ui-datepicker-today': ''}>{item}</td>
+                  );
+                })                                                                   
+              }
+            </tr>
           </tbody>
         }
 
