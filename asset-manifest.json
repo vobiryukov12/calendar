@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/react-gh-pages/static/css/main.5a083599.css",
-    "main.js": "/react-gh-pages/static/js/main.d89bbfe4.js",
-    "index.html": "/react-gh-pages/index.html",
-    "main.5a083599.css.map": "/react-gh-pages/static/css/main.5a083599.css.map",
-    "main.d89bbfe4.js.map": "/react-gh-pages/static/js/main.d89bbfe4.js.map"
+    "main.css": "/calendar/static/css/main.5a083599.css",
+    "main.js": "/calendar/static/js/main.d89bbfe4.js",
+    "index.html": "/calendar/index.html",
+    "main.5a083599.css.map": "/calendar/static/css/main.5a083599.css.map",
+    "main.d89bbfe4.js.map": "/calendar/static/js/main.d89bbfe4.js.map"
   },
   "entrypoints": [
     "static/css/main.5a083599.css",
