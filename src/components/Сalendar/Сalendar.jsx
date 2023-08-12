@@ -132,7 +132,7 @@ export default function Сalendar({ date }) {
         <thead>
           <tr>
             {
-              daysOfWeek.map((item , index, arr) => {
+              daysOfWeek.map((item , index) => {
                 return (
                   <th key={index} scope="col" title={daysOfWeekFull[index]}>{item}</th>
                 );
@@ -145,7 +145,7 @@ export default function Сalendar({ date }) {
           <tbody>
             <tr>
               {
-                allDaysResult[0].map((item , index, arr) => {
+                allDaysResult[0].map((item , index) => {
                   return (
                     <td key={index} className={item > 7 ? 'ui-datepicker-other-month' : day === item ? 'ui-datepicker-today': ''}>{item}</td>
                   );
@@ -157,13 +157,13 @@ export default function Сalendar({ date }) {
               allDaysResult.slice(1, -1).map((item , index, arr) => {
                 return (
                   <tr key={index}>
-                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][0]}</td>
-                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][1]}</td>
-                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][2]}</td>
-                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][3]}</td>
-                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][4]}</td>
-                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][5]}</td>
-                    <td className={day === item ? 'ui-datepicker-today' : ''}>{arr[index][6]}</td>
+                    <td className={day === arr[index][0] ? 'ui-datepicker-today' : ''}>{arr[index][0]}</td>
+                    <td className={day === arr[index][1] ? 'ui-datepicker-today' : ''}>{arr[index][1]}</td>
+                    <td className={day === arr[index][2] ? 'ui-datepicker-today' : ''}>{arr[index][2]}</td>
+                    <td className={day === arr[index][3] ? 'ui-datepicker-today' : ''}>{arr[index][3]}</td>
+                    <td className={day === arr[index][4] ? 'ui-datepicker-today' : ''}>{arr[index][4]}</td>
+                    <td className={day === arr[index][5] ? 'ui-datepicker-today' : ''}>{arr[index][5]}</td>
+                    <td className={day === arr[index][6] ? 'ui-datepicker-today' : ''}>{arr[index][6]}</td>
                   </tr>  
                 );
               })
@@ -171,7 +171,7 @@ export default function Сalendar({ date }) {
 
             <tr>
               {
-                allDaysResult.at(-1).map((item , index, arr) => {
+                allDaysResult.at(-1).map((item , index) => {
                   return (
                     <td key={index} className={item < 7 ? 'ui-datepicker-other-month' : day === item ? 'ui-datepicker-today': ''}>{item}</td>
                   );
