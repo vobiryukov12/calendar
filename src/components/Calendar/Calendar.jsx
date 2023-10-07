@@ -49,11 +49,17 @@ export default function Сalendar({ date }) {
 
   // Номер первого дня недели в текущем месяце
   function getFirstWeekDayNumber() {
-    return new Date(
+    const day = new Date(
       date.getFullYear(),
       date.getMonth(),
       1,
-    ).getDay();
+    ).getDay()
+
+    if (day === 0) {
+      return 7;
+    }
+
+    return day;
   }
 
   // Номер последнего дня недели в текущем месяце
@@ -72,6 +78,8 @@ export default function Сalendar({ date }) {
   for (let i = j; i <= getDaysInPrevMonth(); i++) {
     daysPrevMonth.push(i);
   }
+
+  console.log(j)
   
   // Массив дней в текущем месяце
   const daysCurrentMonth = [];
