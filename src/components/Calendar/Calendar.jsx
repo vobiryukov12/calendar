@@ -78,8 +78,6 @@ export default function Сalendar({ date }) {
   for (let i = j; i <= getDaysInPrevMonth(); i++) {
     daysPrevMonth.push(i);
   }
-
-  console.log(j)
   
   // Массив дней в текущем месяце
   const daysCurrentMonth = [];
